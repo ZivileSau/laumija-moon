@@ -58,31 +58,44 @@ margin-top:4px;
 <h1>Laumijos mėnulis</h1>
 
 <div id="calendar">
-Testas veikia
+kraunasi
 </div>
 
 <script>
-const API_KEY = "7ab91d518b018d23a3bbd9564998e89f0c3209aab9c165e623ca665b41d4e357";
-  
+
+const API_KEY = 7ab91d518b018d23a3bbd9564998e89f0c3209aab9c165e623ca665b41d4e357";
+
 fetch("https://api.freeastroapi.com/api/v1/moon/phase", {
   headers: {
     "x-api-key": API_KEY
   }
 })
 .then(res => res.json())
-
 .then(data => {
 
-  const calendar = document.getElementById("calendar");
+  console.log(data);
 
-  calendar.innerHTML =
-    "<pre style='white-space:pre-wrap;color:white;font-size:12px;'>" +
-    JSON.stringify(data, null, 2) +
-    "</pre>";
+  document.getElementById("calendar").innerHTML = `
+    <div style="font-size:50px;">
+      🌙
+    </div>
+
+    <div>
+      Fazė: ${data.phase_name || "nėra"}
+    </div>
+
+    <div>
+      Apšvietimas: ${data.illumination || "0"}%
+    </div>
+  `;
 
 })
-
 .catch(err => {
+
+  console.log(err);
+
   document.getElementById("calendar").innerHTML =
-    "Klaida: " + err.message;
+    "Klaida API";
 });
+
+</script>
