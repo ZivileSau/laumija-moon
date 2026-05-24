@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="lt">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,47 +8,29 @@
 <title>Laumijos mėnulis</title>
 
 <style>
+
 body{
 margin:0;
 padding:20px;
 background:#111;
-color:white;
 font-family:sans-serif;
+color:white;
 }
 
-h1{
-font-size:32px;
-margin-bottom:20px;
-}
-
-#calendar{
-display:grid;
-grid-template-columns:repeat(7,1fr);
-gap:10px;
-}
-
-.day{
-background:#1d1d1d;
-border-radius:16px;
-padding:12px 6px;
+.wrapper{
+background:#1b1b1b;
+border-radius:24px;
+padding:24px;
+max-width:500px;
+margin:0 auto;
 text-align:center;
 }
 
-.day img{
-width:38px;
-height:38px;
-display:block;
-margin:0 auto 6px;
-}
-
-.date{
-font-size:14px;
-opacity:.7;
-}
-
-.phase{
-font-size:12px;
-margin-top:4px;
+h1{
+margin-top:0;
+font-size:32px;
+margin-bottom:20px;
+font-weight:700;
 }
 
 </style>
@@ -55,47 +38,18 @@ margin-top:4px;
 
 <body>
 
+<div class="wrapper">
+
 <h1>Laumijos mėnulis</h1>
 
-<div id="calendar">
-kraunasi
+<div id="moon-widget"></div>
+
 </div>
 
-<script>
-
-const API_KEY = "7ab91d518b018d23a3bbd9564998e89f0c3209aab9c165e623ca665b41d4e357";
-
-fetch("https://api.freeastroapi.com/api/v1/moon/phase", {
-  headers: {
-    "x-api-key": API_KEY
-  }
-})
-.then(res => res.json())
-.then(data => {
-
-  console.log(data);
-
-  document.getElementById("calendar").innerHTML = `
-    <div style="font-size:50px;">
-      🌙
-    </div>
-
-    <div>
-      Fazė: ${data.phase_name || "nėra"}
-    </div>
-
-    <div>
-      Apšvietimas: ${data.illumination || "0"}%
-    </div>
-  `;
-
-})
-.catch(err => {
-
-  console.log(err);
-
-  document.getElementById("calendar").innerHTML =
-    "Klaida API";
-});
-
+<script 
+src="https://cdn.phaseofthemoontoday.com/widget.js"
+data-style="minimal">
 </script>
+
+</body>
+</html>
