@@ -46,9 +46,72 @@ font-weight:700;
 
 </div>
 
-<script 
-src="https://cdn.phaseofthemoontoday.com/widget.js"
-data-style="minimal">
+<script>
+
+fetch("https://api.phaseofthemoontoday.com/v1/current")
+.then(res => res.json())
+.then(data => {
+
+document.getElementById("calendar").innerHTML = `
+
+<div style="
+background:#1b1b1b;
+padding:20px;
+border-radius:24px;
+text-align:center;
+">
+
+<div style="font-size:70px;">
+${data.emoji}
+</div>
+
+<div style="font-size:24px;margin-top:10px;">
+${data.phase}
+</div>
+
+<div style="opacity:.7;margin-top:8px;">
+Apšvietimas: ${data.illumination}%
+</div>
+
+</div>
+
+`;
+
+});
+
+<script>
+
+fetch("https://api.phaseofthemoontoday.com/v1/current")
+.then(res => res.json())
+.then(data => {
+
+document.getElementById("calendar").innerHTML = `
+
+<div style="
+background:#1b1b1b;
+padding:20px;
+border-radius:24px;
+text-align:center;
+">
+
+<div style="font-size:70px;">
+${data.emoji}
+</div>
+
+<div style="font-size:24px;margin-top:10px;">
+${data.phase}
+</div>
+
+<div style="opacity:.7;margin-top:8px;">
+Apšvietimas: ${data.illumination}%
+</div>
+
+</div>
+
+`;
+
+});
+
 </script>
 
 </body>
