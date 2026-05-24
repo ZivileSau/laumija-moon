@@ -12,25 +12,52 @@
 body{
 margin:0;
 padding:20px;
-background:#111;
+background:#0f0f0f;
 font-family:sans-serif;
 color:white;
 }
 
 .wrapper{
-background:#1b1b1b;
-border-radius:24px;
-padding:24px;
 max-width:500px;
 margin:0 auto;
-text-align:center;
 }
 
 h1{
-margin-top:0;
-font-size:32px;
+font-size:42px;
 margin-bottom:20px;
 font-weight:700;
+}
+
+.card{
+background:#1b1b1b;
+border-radius:28px;
+padding:28px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+.moon{
+font-size:90px;
+line-height:1;
+margin-bottom:16px;
+}
+
+.phase{
+font-size:28px;
+font-weight:600;
+margin-bottom:10px;
+}
+
+.info{
+font-size:16px;
+opacity:.75;
+margin-top:6px;
+}
+
+.loading{
+opacity:.6;
+text-align:center;
+padding:40px;
 }
 
 </style>
@@ -42,73 +69,65 @@ font-weight:700;
 
 <h1>Laumijos mėnulis</h1>
 
-<div id="moon-widget"></div>
+<div id="calendar" class="loading">
+Kraunasi...
+</div>
 
 </div>
 
 <script>
 
 fetch("https://api.phaseofthemoontoday.com/v1/current")
+
 .then(res => res.json())
+
 .then(data => {
 
 document.getElementById("calendar").innerHTML = `
 
-<div style="
-background:#1b1b1b;
-padding:20px;
-border-radius:24px;
-text-align:center;
-">
+<div class="card">
 
-<div style="font-size:70px;">
-${data.emoji}
+<div class="moon">
+${data.emoji || "🌙"}
 </div>
 
-<div style="font-size:24px;margin-top:10px;">
-${data.phase}
+<div class="phase">
+${data.phase || "Mėnulio fazė"}
 </div>
 
-<div style="opacity:.7;margin-top:8px;">
-Apšvietimas: ${data.illumination}%
+<div class="info">
+Apšvietimas: ${data.illumination || 0}%
 </div>
 
 </div>
 
 `;
 
-});
+})
 
-<script>
-
-fetch("https://api.phaseofthemoontoday.com/v1/current")
-.then(res => res.json())
-.then(data => {
+.catch(err => {
 
 document.getElementById("calendar").innerHTML = `
 
-<div style="
-background:#1b1b1b;
-padding:20px;
-border-radius:24px;
-text-align:center;
-">
+<div class="card">
 
-<div style="font-size:70px;">
-${data.emoji}
+<div class="moon">
+🌙
 </div>
 
-<div style="font-size:24px;margin-top:10px;">
-${data.phase}
+<div class="phase">
+Nepavyko užkrauti mėnulio
 </div>
 
-<div style="opacity:.7;margin-top:8px;">
-Apšvietimas: ${data.illumination}%
+<div class="info">
+API klaida
 </div>
 
 </div>
 
 `;
+
+console.log(err);
 
 });
 
