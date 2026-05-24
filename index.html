@@ -79,7 +79,7 @@ Kraunasi...
 
 fetch("https://api.phaseofthemoontoday.com/v1/current")
 
-.then(res => res.json())
+.then(response => response.json())
 
 .then(data => {
 
@@ -92,7 +92,7 @@ ${data.emoji || "🌙"}
 </div>
 
 <div class="phase">
-${data.phase || "Mėnulio fazė"}
+${data.phase || "Nežinoma fazė"}
 </div>
 
 <div class="info">
@@ -105,7 +105,7 @@ Apšvietimas: ${data.illumination || 0}%
 
 })
 
-.catch(err => {
+.catch(error => {
 
 document.getElementById("calendar").innerHTML = `
 
@@ -116,18 +116,16 @@ document.getElementById("calendar").innerHTML = `
 </div>
 
 <div class="phase">
-Nepavyko užkrauti mėnulio
+API klaida
 </div>
 
 <div class="info">
-API klaida
+${error.message}
 </div>
 
 </div>
 
 `;
-
-console.log(err);
 
 });
 
