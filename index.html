@@ -97,10 +97,10 @@ calendar.appendChild(el);
 })
 .catch(err=>{
 
-document.getElementById("calendar").innerHTML=
-"Klaida kraunant mėnulio kalendorių";
+document.getElementById("calendar").innerHTML =
+"Klaida: " + err.message;
 
-console.log(err);
+});
 
 });
 
