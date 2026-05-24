@@ -63,10 +63,7 @@ Kraunasi...
 
 <script>
 const API_KEY = "7ab91d518b018d23a3bbd9564998e89f0c3209aab9c165e623ca665b41d4e357";
-
-const year = new Date().getFullYear();
-const month = new Date().getMonth()+1;
-
+  
 fetch("https://api.freeastroapi.com/api/v1/moon", {
   headers: {
     "x-api-key": API_KEY
@@ -78,7 +75,7 @@ fetch("https://api.freeastroapi.com/api/v1/moon", {
   const calendar = document.getElementById("calendar");
 
   calendar.innerHTML = `
-    <div style="font-size:22px;">
+    <div style="font-size:40px;">
       ${data.moon_phase.emoji}
     </div>
 
